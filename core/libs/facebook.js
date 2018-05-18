@@ -106,9 +106,9 @@ class Facebook {
 	 * @param senderId
 	 * @returns {*}
 	 */
-	async getSenderName(senderId) {
+	async getSenderData(senderId, fields) {
 		const qs = {
-			fields: 'first_name, last_name',
+			fields: fields.join(', '),
 		};
 		const name = await this.request(this.build(senderId, {}, qs, 'GET'));
 		return JSON.parse(name);

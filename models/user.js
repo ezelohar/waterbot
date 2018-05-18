@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const moment = require('moment');
 const sequelize = require('../core/database/postgresql');
 const Facebook = require('../core/libs/facebook');
 
@@ -29,6 +30,10 @@ const User = sequelize.define(
 			type: Sequelize.STRING,
 			allowNull: true,
 		},
+		timezone: {
+			type: Sequelize.SMALLINT,
+			allowNull: false,
+		},
 	},
 );
 
@@ -46,13 +51,19 @@ User.createUserOrFetch = async (facebookId) => {
 	const {
 		first_name: firstName,
 		last_name: lastName,
-	} = await FacebookInstance.getSenderName(facebookId);
+		timezone,
+	} = await FacebookInstance.getSenderData(facebookId, ['first_name', 'last_name', 'timezone']);
 
 	return User.create({
 		facebookId,
 		firstName,
 		lastName,
+		timezone,
 	});
+};
+
+User.setReminders = (user, type) => {
+
 };
 
 /**

@@ -1,6 +1,6 @@
 const config = require('config');
 
-module.exports = [
+module.exports = user => [
 	{
 		attachment: {
 			type: 'image',
@@ -10,7 +10,7 @@ module.exports = [
 		},
 	},
 	{
-		text: 'Well done {{name}}! Keep it up!',
+		text: `Well done ${user.firstName} ${user.lastName}! Keep it up!`,
 	},
 	{
 		text: 'You can always get to the menu by asking for "Menu" 🙂',

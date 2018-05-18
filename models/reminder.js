@@ -2,6 +2,10 @@ const Sequelize = require('sequelize');
 const sequelize = require('../core/database/postgresql');
 
 const {
+	transformTimezoneToHours,
+} = require('../core/libs/times');
+
+const {
 	REMINDERS,
 } = require('../constants/global');
 
@@ -21,16 +25,27 @@ const Reminder = sequelize.define(
 			type: Sequelize.UUID,
 			allowNull: false,
 		},
-		timezone: {
+		unit: {
+			type: Sequelize.INTEGER,
+		},
+		type: {
+			type: Sequelize.ENUM,
+			values: Object.values(REMINDERS.TYPES),
+			defaultValue: REMINDERS.TYPES.DAILY,
+		},
+		subType: {
+			type: Sequelize.ENUM,
+			values: Object.values(REMINDERS.SUBTYPE),
+			defaultValue: REMINDERS.SUBTYPE.INFO,
+		},
+		reply: {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},
-		frequency: {
-			type: Sequelize.SMALLINT,
-			allowNull: false,
-			defaultValue: REMINDERS.OFF,
-		},
 	},
+	{
+		paranoid: false,
+	}
 );
 
 Reminder.associate = (models) => {
@@ -39,7 +54,53 @@ Reminder.associate = (models) => {
 	} = models;
 
 	Reminder.belongsTo(User);
-	User.hasOne(Reminder);
+	User.hasMany(Reminder);
+};
+
+
+// Reminders will be sent ad 8 am, 2 pm, and 8pm.
+// Daily summary will be sent at 10pm
+Reminder.setReminders = async (user, frequency) => {
+	// Clear previous reminders
+	await Reminder.destroy({
+		where: {
+			userId: user.id,
+		},
+	});
+
+	if (frequency !== REMINDERS.FREQUENCY.OFF) {
+		// insert new reminders
+		const hoursGroup = REMINDERS.FREQUENCY_HOURS_GROUP[frequency] || [];
+		const promises = hoursGroup.map(hour => Reminder.create({
+			userId: user.id,
+			unit: transformTimezoneToHours(user.timezone, hour),
+			type: REMINDERS.TYPES.DAILY,
+			subType: REMINDERS.SUBTYPE.INFO,
+			reply: REMINDERS.REPLIES[hour],
+		}));
+
+		// add daily update reminder
+		promises.push(Reminder.create({
+			userId: user.id,
+			unit: transformTimezoneToHours(user.timezone, REMINDERS.DAILY_UPDATE_REMINDER_HOURS),
+			type: REMINDERS.TYPES.DAILY,
+			subType: REMINDERS.SUBTYPE.CALL_TO_ACTION,
+			reply: 'updateWaterProgress',
+		}));
+
+		// add weekly info reminder
+		promises.push(Reminder.create({
+			userId: user.id,
+			unit: 7,
+			type: REMINDERS.TYPES.WEEKLY,
+			subType: REMINDERS.SUBTYPE.INFO,
+			reply: 'drinkWaterWeeklyUpdate',
+		}));
+
+		return Promise.all(promises);
+	}
+
+	return [];
 };
 
 /**

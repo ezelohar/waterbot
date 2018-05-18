@@ -1,6 +1,6 @@
-const TEMPLATES = require('../constants/replies');
+const REPLIES = require('../constants/replies');
 
-module.exports = [
+module.exports = () => [
 	{
 		text: 'Noted 🙂',
 	},
@@ -10,7 +10,7 @@ module.exports = [
 			{
 				content_type: 'text',
 				title: 'Done️',
-				payload: TEMPLATES.DONE,
+				payload: `${REPLIES.DONE},,1`,
 			},
 		],
 	},

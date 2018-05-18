@@ -1,4 +1,7 @@
-const TEMPLATES = require('../constants/replies');
+const REPLIES = require('../constants/replies');
+const {
+	REMINDERS,
+} = require('../constants/global');
 
 module.exports = () => [
 	{
@@ -7,22 +10,22 @@ module.exports = () => [
 			{
 				content_type: 'text',
 				title: 'Once a day ☝️',
-				payload: TEMPLATES.FREQUENCY_CHANGED,
+				payload: `${REPLIES.FREQUENCY_CHANGED},${REMINDERS.FREQUENCY.ONCE_A_DAY}`,
 			},
 			{
 				content_type: 'text',
 				title: 'Twice a day ✌️',
-				payload: TEMPLATES.FREQUENCY_CHANGED,
+				payload: `${REPLIES.FREQUENCY_CHANGED},${REMINDERS.FREQUENCY.TWICE_A_DAY}`,
 			},
 			{
 				content_type: 'text',
 				title: '3 times a day 🙌',
-				payload: TEMPLATES.FREQUENCY_CHANGED,
+				payload: `${REPLIES.FREQUENCY_CHANGED},${REMINDERS.FREQUENCY.THREE_TIMES_A_DAY}`,
 			},
 			{
 				content_type: 'text',
 				title: 'Stop Reminders',
-				payload: TEMPLATES.FREQUENCY_CHANGED,
+				payload: `${REPLIES.FREQUENCY_CHANGED},${REMINDERS.FREQUENCY.OFF}`,
 			},
 		],
 	},

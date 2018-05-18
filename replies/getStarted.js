@@ -1,8 +1,8 @@
-const TEMPLATES = require('../constants/replies');
+const REPLIES = require('../constants/replies');
 
-module.exports = [
+module.exports = user => [
 	{
-		text: 'Hi {{name}} I will be your personal water trainer :) you can call me Woty 💧',
+		text: `Hi ${user.firstName} ${user.lastName} I will be your personal water trainer :) you can call me Woty 💧`,
 	},
 	{
 		text: 'What I can do for you? \n' +
@@ -15,7 +15,7 @@ module.exports = [
 			{
 				content_type: 'text',
 				title: 'Let\'s Start 🙌',
-				payload: TEMPLATES.LETS_START,
+				payload: REPLIES.LETS_START,
 			},
 		],
 	},

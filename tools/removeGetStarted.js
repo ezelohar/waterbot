@@ -8,7 +8,7 @@ const facebook = new Facebook();
 (async () => {
 	try {
 		const requestResponse = await facebook.removeGetStarted();
-		log('Greeting removed');
+		log('Get started removed');
 		log(requestResponse);
 	} catch (error) {
 		log(error);

@@ -1,4 +1,4 @@
-const TEMPLATES = require('../constants/replies');
+const REPLIES = require('../constants/replies');
 
 module.exports = () => [
 	{
@@ -19,7 +19,7 @@ module.exports = () => [
 			{
 				content_type: 'text',
 				title: 'Back️',
-				payload: TEMPLATES.MENU,
+				payload: REPLIES.MENU,
 			},
 		],
 	},

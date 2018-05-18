@@ -3,7 +3,7 @@ const {
 	log,
 } = require('../core/libs/log');
 
-const TEMPLATE = require('../constants/replies');
+const REPLIES = require('../constants/replies');
 
 const facebook = new Facebook();
 
@@ -16,7 +16,7 @@ const menu = {
 				{
 					title: 'Start',
 					type: 'postback',
-					payload: TEMPLATE.GET_STARTED,
+					payload: REPLIES.GET_STARTED,
 				},
 				{
 					title: 'More',
@@ -25,7 +25,7 @@ const menu = {
 						{
 							title: 'Reminder Frequency',
 							type: 'postback',
-							payload: TEMPLATE.CHANGE_FREQUENCY,
+							payload: REPLIES.CHANGE_FREQUENCY,
 						},
 						{
 							type: 'web_url',

@@ -1,7 +1,11 @@
-const TEMPLATES = require('../constants/replies');
 const config = require('config');
 
-module.exports = [
+const REPLIES = require('../constants/replies');
+const {
+	REMINDERS,
+} = require('../constants/global');
+
+module.exports = () => [
 	{
 		attachment: {
 			type: 'image',
@@ -19,7 +23,7 @@ module.exports = [
 			{
 				content_type: 'text',
 				title: 'Once a day ☝️',
-				payload: TEMPLATES.CONFIRMED_FREQUENCY_6_AND_MORE,
+				payload: `${REPLIES.CONFIRMED_FREQUENCY_6_AND_MORE}, ${REMINDERS.FREQUENCY.ONCE_A_DAY}`,
 			},
 		],
 	},

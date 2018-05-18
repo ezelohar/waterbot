@@ -5,7 +5,6 @@ module.exports = {
 	CUPS_3_5: 'cups35',
 	CUPS_6_AND_MORE: 'cups6AndMore',
 	CUPS_DO_NOT_COUNT: 'cupsDoNotCount',
-	CHOOSE_FREQUENCY: 'chooseFrequency',
 	CONFIRMED_FREQUENCY_1_2: 'confirmedFrequency12',
 	CONFIRMED_FREQUENCY_3_5: 'confirmedFrequency35',
 	CONFIRMED_FREQUENCY_6_AND_MORE: 'confirmedFrequency6AndMore',
@@ -16,4 +15,10 @@ module.exports = {
 	MENU: 'menu',
 	INCOMING_GREETING: 'incomingGreeting',
 	NOT_FOUND: 'notFound',
+	DRINK_WATER_REMINDER_MORNING: 'drinkWaterReminderMorning',
+	DRINK_WATER_REMINDER_NOON: 'drinkWaterReminderNoon',
+	DRINK_WATER_REMINDER_EVENING: 'drinkWaterReminderEvening',
+	UPDATE_WATER_PROGRESS: 'updateWaterProgress',
+	DRINK_WATER_WEEKLY_REMINDER: 'drinkWaterWeeklyUpdate',
+	UPDATE_PROGRESS: 'updateProgress',
 };

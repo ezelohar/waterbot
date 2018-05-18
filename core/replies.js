@@ -1,11 +1,14 @@
-const TEMPLATES = require('../constants/replies');
+const REPLIES = require('../constants/replies');
 
-const templates = Object.values(TEMPLATES).reduce((result, currentValue) => {
-	result[currentValue] = require(`./${currentValue}.js`);
+const replies = Object.values(REPLIES).reduce((result, currentValue) => {
+	result[currentValue] = require(`../replies/${currentValue}.js`);
 	return result;
 }, {});
 
-module.exports = (template) => {
+module.exports = (reply, user) => {
 	// add data processing
-	return templates[template] || [];
+	if (!replies[reply]) {
+		return [];
+	}
+	return replies[reply](user);
 };

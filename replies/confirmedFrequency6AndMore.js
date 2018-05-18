@@ -1,5 +1,5 @@
-module.exports = [
+module.exports = user => [
 	{
-		text: 'Thanks {{name}} until the next reminder 🙂',
+		text: `Thanks ${user.firstName} ${user.lastName} until the next reminder 🙂`,
 	},
 ];
