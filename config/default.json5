@@ -1,0 +1,39 @@
+{
+    application: {
+        host: '0.0.0.0',
+        port: 8000,
+        protocol: 'http',
+        cluster: {
+            cpus: 0,
+        },
+        errors: {
+            stack: true,
+        },
+    },
+    database: {
+        postgresql: {
+            host: 'localhost',
+            port: 5432,
+            user: 'admin',
+            password: '',
+            database: 'waterbot',
+        },
+    },
+    facebook: {
+        verificationToken: 'water_bot_test_ezelohar',
+        pageAccessToken: 'EAAbci3Lv9JIBADNjTnSZAqv4ZBZB6WqdyGQ6qD4ZARQlc7SoBejLMPtgJ96m5xM2AT13AUo4L7pStvdqaYZAcQc8MM0ZAqNDdV8ppYeX6OZAsKKjtuCZBD5kaXxRtHNP944uorgNh8raHMGTdooFBucXnolNfMAjHQ0hCujJ7AGAWwZDZD',
+        graphURL: 'https://graph.facebook.com/v3.0/',
+        attachments: {
+            image1: '1523342594442178',
+            image2: '1523342611108843',
+            image3: '1523342624442175',
+            cat: '1523385547771216',
+        }
+    },
+    about: {
+        name: 'KvrzmaBot',
+        author: 'Zoran Lazic',
+        description: 'A bot to remind you to drink water',
+        shortName: 'Kvrzmi'
+    }
+}
