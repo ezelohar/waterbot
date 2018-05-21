@@ -50,7 +50,7 @@ class RequestHandler {
 			} = entry.nlp.entities;
 			const highestConfidenceIntent = intent.sort((a, b) => a - b);
 
-			if (highestConfidenceIntent[0].confidence > 0.9) {
+			if (highestConfidenceIntent[0].confidence > 0.8) {
 				return this.handleCommand({
 					payload: highestConfidenceIntent[0].value,
 				}, user);
